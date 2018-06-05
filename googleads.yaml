@@ -1,0 +1,11 @@
+adwords:
+  client_id: INSERT_OAUTH_2_CLIENT_ID_HERE
+  client_secret: INSERT_CLIENT_SECRET_HERE
+  developer_token: INSERT_DEVELOPER_TOKEN_HERE
+  refresh_token: INSERT_REFRESH_TOKEN_HERE
+dfp:
+  application_name: Demo
+  client_id: 191767110nr1msso5hje.apps.googleusercontent.com
+  client_secret: GjgGtSyPLE0Srt
+  network_code: 801
+  refresh_token: 3dMyNg0AraT_o0-jDPbLm6RsyoOXAc

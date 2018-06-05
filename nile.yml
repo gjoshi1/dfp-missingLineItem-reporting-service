@@ -1,0 +1,54 @@
+name: dfp-domo-service
+environments:
+- name: prod
+  namespace: nile-red-eng
+  type: ecs
+  override:
+    services:
+      app:
+        image: quay.io/washpost/dfp-domo-service:{{ .Version }}
+        log_driver: awslogs
+        log_opt:
+          awslogs-group: /nile/nile-red-eng/dfp-domo-service/prod
+          awslogs-region: us-east-1
+        ports:
+          - "5015:5000"
+        environment:
+          NODE_ENV: prod
+       
+  services:
+    - deploymentConfiguration:
+        maximumPercent: 200
+        minimumHealthyPercent: 50
+      desiredCount: 2
+      loadBalancers:
+      - containerName: app
+        containerPort: 5000
+        loadBalancerName: dfp-domo-service-prod
+      serviceName: main
+- name: dev
+  namespace: nile-red-eng
+  type: ecs
+  override:
+    services:
+      app:
+        image: quay.io/washpost/dfp-domo-service:{{ .Version }}
+        log_driver: awslogs
+        log_opt:
+          awslogs-group: /nile/nile-red-eng/dfp-domo-service/dev
+          awslogs-region: us-east-1
+        ports:
+          - "5010:5000"
+        environment:
+          NODE_ENV: prod
+        
+  services:
+    - deploymentConfiguration:
+        maximumPercent: 200
+        minimumHealthyPercent: 50
+      desiredCount: 1
+      loadBalancers:
+      - containerName: app
+        containerPort: 5000
+        loadBalancerName: dfp-domo-service-dev
+      serviceName: main

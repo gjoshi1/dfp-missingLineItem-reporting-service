@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build: .
+    image: quay.io/washpost/dfp-domo-service:0.1.12
+    ports:
+     - "5010:5000"
+    environment:
+          NODE_ENV: prod
+    
